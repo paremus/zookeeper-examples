@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paremus Service Fabric ZooKeeper Example</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    
+    <script>
+    
+      buffer = [];
+      
+      display = function() {
+              element = document.getElementById("responses");
+          
+              while (element.hasChildNodes()) {
+                  element.removeChild(element.lastChild);
+              }
+          
+              for (var i = 0; i < buffer.length; i++) {
+                  node = document.createElement("div");
+                  node.innerHTML = buffer[i];
+                  element.appendChild(node);
+              }
+          
+          };
+      
+      doUpdate = function(message) {
+       
+              buffer.unshift(message);
+          
+              if(buffer.length > 10) {
+                  buffer.pop()
+              }
+          
+              display();
+          };
+    
+      setupWebSocket = function() {
+      
+              var url = "ws://" + window.location.hostname;
+        
+              if(window.location.port) {
+                  url += ":" + window.location.port;
+              }
+            
+              url += window.location.pathname;
+              
+              url = url.substring(0, url.lastIndexOf("static/index.html")) + "listen";
+      
+              ws = new WebSocket(url);
+      
+              ws.onopen = function() {
+                      doUpdate("Connected to server");
+                  };
+              ws.onmessage = function (evt) {
+                      doUpdate(evt.data ? evt.data : "...");
+                  };
+              ws.onclose = function (evt) {
+                      doUpdate("Web Socket closed... retrying in 5 seconds");
+                      window.setTimeout(setupWebSocket, 5000);
+                  };
+              ws.onerror = function (evt) {
+                      doUpdate("Web Socket failed");
+                  };
+          };
+
+      setupWebSocket();
+    </script>
+  </head>
+  
+  <body>
+    <div class="container-fluid">
+    <div class="row">
+      <div class="span4 logo">
+        <img border="0" src="img/logo-paremus.png" alt="Paremus Ltd">
+      </div>
+      <div class="span4">
+        <h4>Welcome to the ZooKeeper Example</h4>
+      </div>
+    </div>
+    
+    <div class="row">    
+      <div class="span6">
+        <form class="form-inline" role="form">
+          <input id="count" type="number" min="20" max="100" class="span4"
+              placeholder="Enter a value between 20 and 100"/> 
+          <button type="submit" class="btn btn-primary" 
+                  onclick="ws.send(document.getElementById('count').value); return false;">Start!</button>
+        </form>
+      </div>
+    </div>
+    <div class="row">    
+      <div class="span6">
+        <div id="responses" class="lead"/>
+      </div>
+    </div>
+  </body>
+</html>

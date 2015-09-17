@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>zookeeper</artifactId>
+        <groupId>com.example.zookeeper-1.13</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>zookeeper-system</artifactId>
+    <packaging>pom</packaging>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>Paremus Releases</id>
+            <url>https://nexus.paremus.com/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.paremus.fabric</groupId>
+                <artifactId>paremus-system-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <indexes>
+                        <index>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>zookeeper-index</artifactId>
+                            <version>${project.parent.version}</version>
+                        </index>
+                    </indexes>
+                    <localURLs>${local.index.policy}</localURLs>
+                    <schemaValidation>false</schemaValidation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>prepare-system</id>
+                        <goals>
+                            <goal>build-system</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

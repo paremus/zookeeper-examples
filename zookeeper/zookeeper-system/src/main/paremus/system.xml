@@ -1,0 +1,38 @@
+<system xmlns="http://schema.paremus.com/sf/1.2" version="1.0.0"
+    name="zookeeper" boundary="fibre" repopath="">
+    <description>
+        A simple websocket application with a set of 
+        distributed workers using ZooKeeper locking.
+    </description>
+    <admin group="demo" />
+
+    <!-- Declarative Services Greeting service -->
+    <system.part name="zookeeper-worker">
+        
+        <config pid="com.example.zookeeper.worker">
+            <property name="zk.connection" value="${zkClient#ZKExample}" />
+        </config>
+
+        <contract features="(AppLayer=true)" />
+
+        <replication.handler name="scale" type="scalable">
+            <property name="scaleFactor" value="1" type="float" />
+            <property name="minimum" value="1" type="integer" />
+        </replication.handler>
+    </system.part>
+
+    <!-- Remote Web viewer -->
+    <system.part name="zookeeper-web">
+
+        <config pid="com.example.zookeeper.web">
+            <property name="zk.connection" value="${zkClient#ZKExample}" />
+        </config>
+        
+        <config pid="org.apache.felix.http">
+            <property name="org.osgi.service.http.port" value="8192"/>
+        </config>
+
+        <contract features="(WebLayer=true)" />
+    </system.part>
+</system>
+

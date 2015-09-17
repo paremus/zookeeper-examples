@@ -1,0 +1,11 @@
+zookeeper-worker;version='[1.0.0,1.0.1)';resolution=file:/Users/timothyjward/paremus/src/zookeeper-example/zookeeper/zookeeper-worker/target/zookeeper-worker-1.0.0-SNAPSHOT.jar
+curator-client;version='[2.11.0,2.11.1)';resolution=file:/Users/timothyjward/.m2/repository/org/apache/curator/curator-client/2.11.0/curator-client-2.11.0.jar
+com.google.guava;version='[16.0.1,16.0.2)';resolution=file:/Users/timothyjward/.m2/repository/com/google/guava/guava/16.0.1/guava-16.0.1.jar
+ch.qos.logback.classic;version='[1.1.7,1.1.8)';resolution=file:/Users/timothyjward/.m2/repository/ch/qos/logback/logback-classic/1.1.7/logback-classic-1.1.7.jar
+org.apache.hadoop.zookeeper;version='[3.4.6,3.4.7)';resolution=file:/Users/timothyjward/.m2/repository/org/apache/zookeeper/zookeeper/3.4.6/zookeeper-3.4.6.jar
+zookeeper-api;version='[1.0.0,1.0.1)';resolution=file:/Users/timothyjward/paremus/src/zookeeper-example/zookeeper/zookeeper-api/target/zookeeper-api-1.0.0-SNAPSHOT.jar
+ch.qos.logback.core;version='[1.1.7,1.1.8)';resolution=file:/Users/timothyjward/.m2/repository/ch/qos/logback/logback-core/1.1.7/logback-core-1.1.7.jar
+org.apache.felix.scr;version='[2.0.2,2.0.3)';resolution=file:/Users/timothyjward/.m2/repository/org/apache/felix/org.apache.felix.scr/2.0.2/org.apache.felix.scr-2.0.2.jar
+slf4j.api;version='[1.7.21,1.7.22)';resolution=file:/Users/timothyjward/.m2/repository/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar
+curator-framework;version='[2.11.0,2.11.1)';resolution=file:/Users/timothyjward/.m2/repository/org/apache/curator/curator-framework/2.11.0/curator-framework-2.11.0.jar
+curator-recipes;version='[2.11.0,2.11.1)';resolution=file:/Users/timothyjward/.m2/repository/org/apache/curator/curator-recipes/2.11.0/curator-recipes-2.11.0.jar
